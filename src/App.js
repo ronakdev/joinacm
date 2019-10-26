@@ -1,24 +1,18 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import Map from "./components/Map"
 
 function App() {
+  constructor(props) {
+    this.state = {x: -1, y: -1}
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Map/>
+      <p>
+        Last click was on {this.state.x} and {this.state.y}
+      </p>
     </div>
   );
 }
