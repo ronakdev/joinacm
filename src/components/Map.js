@@ -7,7 +7,8 @@ class ColoredCircle extends React.Component {
     color: 'green'
   };
   handleClick = (e) => {
-
+    this.props.gp.setState({x: e.evt.screenX, y: e.evt.screenY})
+    console.log(e.evt)
     this.setState({
       color: Konva.Util.getRandomColor()
     });
@@ -36,7 +37,7 @@ export default class Map extends Component {
       <Stage width={window.innerWidth} height={window.innerHeight}>
         <Layer>
           <Text text="Try click on rect" />
-          <ColoredCircle />
+          <ColoredCircle gp={this.props.parent} />
         </Layer>
       </Stage>
     );
