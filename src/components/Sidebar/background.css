@@ -1,0 +1,35 @@
+.sidebar {
+    background: linear-gradient(212deg, #2a2e7e, #3838ad, #5050c4);
+    background-size: 600% 600%;
+
+    -webkit-animation: sidebar 0s ease infinite;
+    animation: sidebar 0s ease infinite;
+
+    @-webkit-keyframes sidebar {
+        0% {
+            background-position: 79% 0%
+        }
+
+        50% {
+            background-position: 22% 100%
+        }
+
+        100% {
+            background-position: 79% 0%
+        }
+    }
+
+    @keyframes sidebar {
+        0% {
+            background-position: 79% 0%
+        }
+
+        50% {
+            background-position: 22% 100%
+        }
+
+        100% {
+            background-position: 79% 0%
+        }
+    }
+}

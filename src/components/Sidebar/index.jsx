@@ -11,6 +11,7 @@ class Sidebar extends Component {
           <h1>VIGHT</h1>
           <Button className="button" type="danger">
             <strong>START GAME</strong>
+            <i>Test</i>
           </Button>
       </div>
     );
