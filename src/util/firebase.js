@@ -85,6 +85,7 @@ export function setOnZombieUpdate(callback) {
 export function setOnZombieAdd(callback) {
     db.ref("spawn").on("value", (snapshot) => {
         let data = snapshot.val()
+        if (!data) { return }
         if (data.session === session) { return } // we already have this zombie
 
         callback(data)
