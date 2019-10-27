@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Progress } from "antd";
+import { Progress, message } from "antd";
 import { setOnHealthUpdate } from "../../util/firebase";
 
 import "./style.less";
@@ -20,6 +20,9 @@ export default class ProgressBar extends React.Component {
   }
   render() {
     // // console.log(this.state.health/100)
+    if (this.state.health <= 0) {
+      message.info("Player Lost!")
+    }
     return (
       <div className="progressbar">
         <Progress

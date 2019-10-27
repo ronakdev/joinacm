@@ -26,14 +26,15 @@ class Sidebar extends Component {
         <h1>VIGHT</h1>
         <h3>
           Welcome to Vight, an interactive shooter between multiple players
-          spawning zombies and one fighter.
+          spawning zombies and one Vighter.
         </h3>
         <Feed />
         <p>
-          Minecraft is a sandbox video game created by Swedish game developer
-          Markus Persson and released by Mojang in 2011. The game allows players
-          to build with a variety of different blocks in a 3D procedurally
-          generated world, requiring creativity from players.
+          Players take turns seeing how long they last in Vight!
+
+          The non VR players use their nodes to spawn zombies around for their friend. Be careful, because you have limited funds!
+
+          
         </p>
         <Button
           className="button"
