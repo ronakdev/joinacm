@@ -41,6 +41,10 @@ export function reset() {
     // updates it with any value to trigger an event on the Unity end
 }
 
+/**
+ * Sets a specified callback function to be called as health is updated
+ * @param {function: (health: number) => {}} callback - called when health is updated
+ */
 export function setOnHealthUpdate(callback) {
     db.ref("/health").on("value", (snapshot) => {
         let data = snapshot.val()
