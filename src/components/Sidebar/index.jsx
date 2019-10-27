@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import { Button } from "antd";
 import {reset} from "../../util/firebase"
+
+import Feed from "../../components/Feed/index.jsx"
+
 import "./style.less";
 
 const statuses = ["Start Player 1 Game", "End Player 1 Game", "Start Player 2 Game", "End Player 2 Game"]
@@ -17,11 +20,7 @@ class Sidebar extends Component {
       <div className="sidebar">
         <h1>VIGHT</h1>
         <h3>Welcome to Vight, an interactive shooter between</h3>
-        <ol>
-          <li>sdsd</li>
-          <li>sdsd</li>
-          <li>sdsd</li>
-        </ol>
+        <Feed />
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
           eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad

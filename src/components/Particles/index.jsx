@@ -30,7 +30,7 @@ class BackgroundParticles extends Component {
             random: true,
             straight: false, // Whether they'll shift left and right while moving.
             out_mode: "out", // What it'll do when it reaches the end of the canvas, either "out" or "bounce".
-            bounce: false
+            bounce: true
           },
           interactivity: {
             events: {
