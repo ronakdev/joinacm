@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Stage, Layer, Rect } from "react-konva";
+import { Stage, Layer, Rect, Circle } from "react-konva";
 import Konva from "konva";
 import BackgroundParticles from "../Particles";
 import {sendSpawn} from "../../util/firebase";
@@ -91,17 +91,10 @@ class Zombie extends React.Component {
     height: 50
   };
 
-  setColor = () => {
-    this.setState({
-      color: Konva.Util.getRandomColor()
-    });  
-  }
-
-
   render() {
     console.log('ye rects')
     return (
-      <Rect
+      <Circle
         x={this.props.x - (this.state.width / 2)}
         y={this.props.y - (this.state.height / 2)}
         width={this.state.width}
