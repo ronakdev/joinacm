@@ -95,8 +95,8 @@ class Zombie extends React.Component {
     console.log('ye rects')
     return (
       <Circle
-        x={this.props.x - (this.state.width / 2)}
-        y={this.props.y - (this.state.height / 2)}
+        x={this.props.x}
+        y={this.props.y}
         width={this.state.width}
         height={this.state.height}
         opacity="0.5"
