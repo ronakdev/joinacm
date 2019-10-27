@@ -45,7 +45,7 @@ export default class Map extends Component {
     let x = e.evt.layerX, y = e.evt.layerY
 
     // check if x is within "no-no zone"
-    if (x >= 220 && y >= 220 && x <= 320 && y <= 320) {
+    if (x >= 220 && y >= 200 && x <= 350 && y <= 350) {
       // player area, out of bounds
       message.error("You can't spawn right next to the player!")
       return;
