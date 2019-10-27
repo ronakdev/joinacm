@@ -93,6 +93,8 @@ export function setOnZombieAdd(callback, getAll) {
         callback(data)
     })
 }
+
+let funcs = []
 /**
  * Tells the Unity Game to Reset (removes all objects)
  */
@@ -101,9 +103,16 @@ export function reset() {
   db.ref('/spawn').set({})
   cointAmount = 50;
   time = 0;
+  funcs.forEach(f => {
+    f()
+  })
   // updates it with any value to trigger an event on the Unity end
 }
 
+
+export function setOnReset(callback) {
+  funcs.push(callback)
+}
 /**
  * Sets a specified callback function to be called as health is updated
  * @param {function: (health: number) => {}} callback - called when health is updated

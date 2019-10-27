@@ -7,7 +7,8 @@ import {
   coins,
   spendCoins,
   setOnZombieUpdate,
-  setOnZombieAdd
+  setOnZombieAdd,
+  setOnReset
 } from "../../util/firebase";
 import "./style.less";
 import { message } from "antd";
@@ -46,6 +47,12 @@ export default class Map extends Component {
     };
     this.handleClick = this.handleClick.bind(this);
 
+    setOnReset(() => {
+      this.setState({
+        zombies: []
+      })
+    })
+    
     setOnZombieUpdate(id => {
       // console.log(`zombie: ${id} was killed!`);
       let index = this.state.zombies
