@@ -1,8 +1,25 @@
 import React from 'react';
 
 import { Progress } from "antd";
+import {setOnHealthUpdate} from "../../util/firebase"
 
-const ProgressBar = () => (
+export default class ProgressBar extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      health: 100
+    }
+    setOnHealthUpdate((health) => {
+      console.log(`got health!! ${health}`)
+      this.setState({
+        health: parseInt(health)
+      })
+      
+    })
+  }
+  render() {
+    // console.log(this.state.health/100)
+    return (
   <div className="progressbar">
     <Progress
       strokeColor={{
@@ -10,9 +27,9 @@ const ProgressBar = () => (
         "100%": "#18e310"
       }}
       strokeWidth={20}
-      percent={99.9}
+      percent={this.state.health}
     />
   </div>
-);
-
-export default ProgressBar;
+)
+    }
+  }

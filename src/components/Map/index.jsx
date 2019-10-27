@@ -4,6 +4,7 @@ import Konva from "konva";
 import BackgroundParticles from "../Particles";
 import {sendSpawn} from "../../util/firebase";
 import "./style.less";
+import {message} from "antd"
 
 class ColoredRect extends React.Component {
   state = {
@@ -40,11 +41,16 @@ export default class Map extends Component {
   }
 
   handleClick(e, width, height) {
-    console.log(e)
+    // console.log(e)
     let x = e.evt.layerX, y = e.evt.layerY
+
+    // check if x is within "no-no zone"
+    if (x >= 220 && y >= 200 && x <= 350 && y <= 350) {
+      // player area, out of bounds
+      message.error("You can't spawn right next to the player!")
+      return;
+    }
     let id = sendSpawn(x, y, width, height) ;
-    console.log(document.getElementsByClassName("particles"))
-    console.log(document.getElementsByClassName("particles")[0])
     simulate(document.getElementsByClassName("particles")[0], {
       type: "click",
       screenX: e.evt.screenX,
@@ -66,14 +72,15 @@ export default class Map extends Component {
     // Stage is a div container
     // Layer is actual canvas element (so you may have several canvases in the stage)
     // And then we have canvas shapes inside the Layer
-    console.log(this.state.zombies)
+    // console.log(this.state.zombies)
     return (
       <div className="map" style={{ position: "relative", }}>
         <Stage width={550} height={550}>
           <Layer>
+            <Player canvasWidth={550} canvasHeight={550}></Player>
             <ColoredRect innerRef={this.rect} gp={this.props.parent} handleClick={this.handleClick}/>
             { this.state.zombies.map((zData, index) => {
-              console.log(zData)
+              // console.log(zData)
               return <Zombie key={index} id={zData.id} x={zData.x} y={zData.y} />
             })}
           </Layer>
@@ -92,7 +99,7 @@ class Zombie extends React.Component {
   };
 
   render() {
-    console.log('ye rects')
+    // console.log('ye rects')
     return (
       <Circle
         x={this.props.x}
@@ -102,7 +109,31 @@ class Zombie extends React.Component {
         opacity="0.5"
         fill={this.state.color}
         shadowBlur={5}
-        onClick={(e) => { this.setColor() } }
+        ref={this.props.innerRef}
+      />
+    );
+  }
+}
+
+class Player extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      width: 50,
+      height: 50,
+      color: "lightblue"
+    }
+  }
+  render() {
+    return (
+      <Circle
+        x={this.props.canvasWidth / 2}
+        y={this.props.canvasWidth / 2}
+        width={this.state.width}
+        height={this.state.height}
+        opacity="0.5"
+        fill={this.state.color}
+        shadowBlur={5}
         ref={this.props.innerRef}
       />
     );
@@ -110,7 +141,7 @@ class Zombie extends React.Component {
 }
 
 function simulate(target, options) {
-  console.log("target")
+  // console.log("target")
   var event = target.ownerDocument.createEvent('MouseEvents'),
       options = options || {},
       opts = { // These are the default values, set up for un-modified left clicks

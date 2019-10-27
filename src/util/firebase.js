@@ -55,6 +55,7 @@ export function setOnHealthUpdate(callback) {
     db.ref("/health").on("value", (snapshot) => {
         let data = snapshot.val()
         // check if data isn't temp
+        console.log(data)
         callback(data)
     })
 }
