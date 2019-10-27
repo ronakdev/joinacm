@@ -68,7 +68,7 @@ export default class Map extends Component {
     // And then we have canvas shapes inside the Layer
     console.log(this.state.zombies)
     return (
-      <div style={{ position: "relative", }}>
+      <div className="map" style={{ position: "relative", }}>
         <Stage width={550} height={550}>
           <Layer>
             <ColoredRect innerRef={this.rect} gp={this.props.parent} handleClick={this.handleClick}/>
