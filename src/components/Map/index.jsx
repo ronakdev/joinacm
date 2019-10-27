@@ -71,6 +71,7 @@ export default class Map extends Component {
           return e.id;
         })
         .indexOf(spawnData.id);
+      console.log(index);
       if (index !== -1) {
         return;
       } // already here
