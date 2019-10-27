@@ -4,22 +4,11 @@ import Particles from "react-particles-js";
 class BackgroundParticles extends Component {
   render() {
     return (
-      // <Particles
-      //   params={{
-      //     polygon: {
-      //       enable: true,
-      //       type: "inside",
-      //       move: {
-      //         radius: 10
-      //       },
-      //       url: "/logo.svg"
-      //     }
-      //   }}
-      // />
       <Particles
-        style={{position: "absolute", top: 0}}
-        width="400px"
-        height="400px"
+        className="particles"
+        style={{ position: "absolute", top: 0 }}
+        width="550px"
+        height="550px"
         params={{
           particles: {
             number: {

@@ -20,10 +20,8 @@ class ColoredRect extends React.Component {
   render() {
     return (
       <Rect
-        // x={300}
-        // y={300}
-        width={400}
-        height={400}
+        width={550}
+        height={550}
         opacity="0.5"
         fill={this.state.color}
         shadowBlur={5}
@@ -51,7 +49,7 @@ export default class Map extends Component {
         this.rect.current.fire('click', e);
         console.log(e)
         }}>
-        <Stage width={400} height={400}>
+        <Stage width={550} height={550}>
           <Layer>
             <ColoredRect innerRef={this.rect} gp={this.props.parent} handleClick={this.toggleColor}/>
           </Layer>
