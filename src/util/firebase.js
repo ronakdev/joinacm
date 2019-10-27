@@ -12,12 +12,17 @@ let db = firebase.database()
  * @param {number} y 
  * @returns {string} of the new unique id
  */
-export function sendSpawn(x, y) {
+export function sendSpawn(x, y, width, height) {
+    let mX = width / 40
+    let mY = height / 40
+
+    let moddedX = Math.floor(x / mX) - 20;
+    let moddedY = Math.floor(y / mY) - 20;
     let id = uuidv4()
     db.ref("/spawn").set({
         id: id,
-        x: x,
-        y: y
+        x: moddedX,
+        y: moddedY
     })
     return id
 }
