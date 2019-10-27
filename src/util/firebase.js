@@ -7,7 +7,7 @@ firebase.analytics()
 
 let db = firebase.database()
 
-export let cointAmount = 10;
+export let cointAmount = 50;
 
 export function coins() {
     return cointAmount
@@ -58,7 +58,7 @@ export function sendSpawn(x, y, width, height) {
 
     let moddedX = Math.floor(x / mX) - 20;
     let moddedY = Math.floor(y / mY) - 20;
-    let id = uuidv4()
+    let id = randomName()
     db.ref("/spawn").set({
         id: id,
         x: moddedX,
@@ -79,6 +79,13 @@ export function setOnZombieUpdate(callback) {
     })
 }
 
+export function setOnZombieAdd(callback) {
+    db.ref("spawn").on("value", (snapshot) => {
+        let data = snapshot.val()
+
+        callback(data)
+    })
+}
 /**
  * Tells the Unity Game to Reset (removes all objects)
  */
@@ -107,3 +114,12 @@ export function uuidv4() {
 }
 
 export default firebase
+
+let adjectives = ["Snarky", "Sneaky", "Swanky", "Funny", "Weird"]
+let names = ["Steve", "Johnny", "Riley", "Wiley"]
+function randomName() {
+    let aI = Math.floor( Math.random() * adjectives.length)
+    let nI = Math.floor( Math.random() * names.length)
+
+    return adjectives[aI] + " " + names[nI] + `-${Math.random()}`
+}

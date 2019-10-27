@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Stage, Layer, Rect, Circle } from "react-konva";
 import Konva from "konva";
 import BackgroundParticles from "../Particles";
-import {sendSpawn, coins, spendCoins, setOnZombieUpdate} from "../../util/firebase";
+import {sendSpawn, coins, spendCoins, setOnZombieUpdate, setOnZombieAdd} from "../../util/firebase";
 import "./style.less";
 import {message} from "antd"
 
@@ -35,18 +35,40 @@ export default class Map extends Component {
     super(props)
     this.rect = React.createRef();
     this.state = {
+      width: 550,
+      height: 550,
       zombies: []
     }
     this.handleClick = this.handleClick.bind(this)
 
     setOnZombieUpdate((id) => {
       console.log(`zombie: ${id} was killed!`)
-      let index = this.state.zombies.indexOf(id)
+      let index = this.state.zombies.map(function(e) { return e.id; }).indexOf(id);
+
       console.log(`found at index: ${index}`)
       if (index === -1) { return }
       this.setState({
-        state: this.state.zombies.slice(index, 1)
+        state: this.state.zombies.splice(index, 1)
       })
+      console.log(this.state.zombies)
+    })
+
+    setOnZombieAdd((spawnData) => {
+      let index = this.state.zombies.map(function(e) { return e.id; }).indexOf(spawnData.id);
+      if (index !== -1) { return } // already here
+      let array = this.state.zombies
+    let mX = this.state.width / 40
+    let mY = this.state.height / 40
+    let realX = (spawnData.x + 20) * mX
+    let realY = (spawnData.y + 20) * mY
+      array.push({
+        x: realX,
+        y: realY,
+        id: spawnData.id
+      })
+    this.setState({
+      zombies: array
+    }) 
     })
   }
 
