@@ -54,6 +54,7 @@ export default class Feed extends Component {
       console.log(zombieData)
       console.log(this.state.dataSource)
       let index = this.state.dataSource.map(e => e.id).indexOf(zombieData)
+      if (index === -1) { return}
       let array = this.state.dataSource
       console.log(index)
       array[index].address = "ELIMINATED"
