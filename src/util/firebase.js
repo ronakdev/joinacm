@@ -115,7 +115,7 @@ export function reset() {
 export function setOnReset(callback) {
   funcs.push(callback)
   db.ref("/reset").on("value", snapshot => {
-    callback()
+    reset()
   })
 }
 /**
