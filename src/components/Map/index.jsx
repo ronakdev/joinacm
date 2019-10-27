@@ -41,7 +41,7 @@ export default class Map extends Component {
   }
 
   handleClick(e, width, height) {
-    console.log(e)
+    // console.log(e)
     let x = e.evt.layerX, y = e.evt.layerY
 
     // check if x is within "no-no zone"
@@ -72,7 +72,7 @@ export default class Map extends Component {
     // Stage is a div container
     // Layer is actual canvas element (so you may have several canvases in the stage)
     // And then we have canvas shapes inside the Layer
-    console.log(this.state.zombies)
+    // console.log(this.state.zombies)
     return (
       <div className="map" style={{ position: "relative", }}>
         <Stage width={550} height={550}>
@@ -80,7 +80,7 @@ export default class Map extends Component {
             <Player canvasWidth={550} canvasHeight={550}></Player>
             <ColoredRect innerRef={this.rect} gp={this.props.parent} handleClick={this.handleClick}/>
             { this.state.zombies.map((zData, index) => {
-              console.log(zData)
+              // console.log(zData)
               return <Zombie key={index} id={zData.id} x={zData.x} y={zData.y} />
             })}
           </Layer>
@@ -99,7 +99,7 @@ class Zombie extends React.Component {
   };
 
   render() {
-    console.log('ye rects')
+    // console.log('ye rects')
     return (
       <Circle
         x={this.props.x}
@@ -141,7 +141,7 @@ class Player extends React.Component {
 }
 
 function simulate(target, options) {
-  console.log("target")
+  // console.log("target")
   var event = target.ownerDocument.createEvent('MouseEvents'),
       options = options || {},
       opts = { // These are the default values, set up for un-modified left clicks
