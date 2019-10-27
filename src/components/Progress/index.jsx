@@ -6,8 +6,8 @@ const ProgressBar = () => (
   <div className="progressbar">
     <Progress
       strokeColor={{
-        "0%": "#108ee9",
-        "100%": "#87d068"
+        "10%": "#bd250f",
+        "100%": "#18e310"
       }}
       strokeWidth={20}
       percent={99.9}

@@ -24,7 +24,6 @@ class App extends React.Component{
       <div className="App">        
         <Sidebar />
         <RightLayout className="RightLayout" parent={this} x={this.state.x} y={this.state.y} />
-        {/* <Map parent={this}/> */}
       </div>
     );
   }

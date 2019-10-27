@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import Particles from "react-particles-js";
 
+import "./style.less";
+
 class BackgroundParticles extends Component {
   render() {
     return (
@@ -15,15 +17,15 @@ class BackgroundParticles extends Component {
               value: 50
             },
             size: {
-              value: 3
+              value: 2
             },
             color: {
-              value: "#000"
+              value: "#ff0000"
             }
           },
           interactivity: {
             events: {
-              onhover: {
+              onclick: {
                 enable: true,
                 mode: "repulse"
               }
