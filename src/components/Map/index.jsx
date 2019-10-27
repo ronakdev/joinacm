@@ -110,11 +110,11 @@ export default class Map extends Component {
     }
 
     // check if we have enough funds
-    if (coins() < 50) {
-      message.error("You need 50 coins to send a zombie!!");
+    if (coins() < 30) {
+      message.error("You need 30 coins to send a zombie!!");
       return;
     } else {
-      spendCoins(50);
+      spendCoins(30);
     }
     let id = sendSpawn(x, y, width, height);
     simulate(document.getElementsByClassName("particles")[0], {
