@@ -9,7 +9,7 @@ let db = firebase.database();
 
 export let session = Math.random();
 
-export let cointAmount = 5000;
+export let cointAmount = 100;
 
 export function coins() {
   return cointAmount;
@@ -126,8 +126,8 @@ export function uuidv4() {
 
 export default firebase;
 
-let adjectives = ["Snarky", "Sneaky", "Swanky", "Funny", "Weird"];
-let names = ["Steve", "Johnny", "Riley", "Wiley"];
+let adjectives = ["Snarky", "Sneaky", "Swanky", "Funny", "Weird", "Panda"];
+let names = ["Steve", "Johnny", "Riley", "Wiley", "Panda", "Jonathan", "Justin", "Cat"];
 function randomName() {
   let aI = Math.floor(Math.random() * adjectives.length);
   let nI = Math.floor(Math.random() * names.length);

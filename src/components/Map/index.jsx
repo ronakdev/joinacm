@@ -14,7 +14,6 @@ import { message } from "antd";
 
 class ColoredRect extends React.Component {
   state = {
-
     width: 550,
     height: 550
   };
@@ -187,7 +186,7 @@ class Player extends React.Component {
     this.state = {
       width: 50,
       height: 50,
-      color: "lightblue"
+      color: "#430064"
     };
   }
   render() {
@@ -197,7 +196,8 @@ class Player extends React.Component {
         y={this.props.canvasWidth / 2}
         width={this.state.width}
         height={this.state.height}
-        opacity="0.5"
+        opacity="#BB32FF"
+        fillPatternImage = "https://icon-library.net/images/my-profile-icon-png/my-profile-icon-png-3.jpg"
         fill={this.state.color}
         shadowBlur={5}
         ref={this.props.innerRef}

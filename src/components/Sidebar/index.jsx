@@ -1,37 +1,50 @@
 import React, { Component } from "react";
 import { Button } from "antd";
-import {reset} from "../../util/firebase"
+import { reset } from "../../util/firebase";
 
-import Feed from "../../components/Feed/index.jsx"
+import Feed from "../../components/Feed/index.jsx";
 
 import "./style.less";
 
-const statuses = ["Start Player 1 Game", "End Player 1 Game", "Start Player 2 Game", "End Player 2 Game"]
+const statuses = [
+  "Start Player 1 Game",
+  "End Player 1 Game",
+  "Start Player 2 Game",
+  "End Player 2 Game"
+];
 
 class Sidebar extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      statusIndex : 0
-    }
+      statusIndex: 0
+    };
   }
   render() {
     return (
       <div className="sidebar">
         <h1>VIGHT</h1>
-        <h3>Welcome to Vight, an interactive shooter between</h3>
+        <h3>
+          Welcome to Vight, an interactive shooter between multiple players
+          spawning zombies and one fighter.
+        </h3>
         <Feed />
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad
-          minim veniam, quis
+          Minecraft is a sandbox video game created by Swedish game developer
+          Markus Persson and released by Mojang in 2011. The game allows players
+          to build with a variety of different blocks in a 3D procedurally
+          generated world, requiring creativity from players.
         </p>
-        <Button className="button" type="danger" onClick={() => {
-          reset()
-          this.setState({
-            statusIndex: this.state.statusIndex + 1
-          })
-        }}>
+        <Button
+          className="button"
+          type="danger"
+          onClick={() => {
+            reset();
+            this.setState({
+              statusIndex: this.state.statusIndex + 1
+            });
+          }}
+        >
           <strong>{statuses[this.state.statusIndex % statuses.length]}</strong>
         </Button>
       </div>
