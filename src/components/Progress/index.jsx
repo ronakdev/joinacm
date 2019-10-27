@@ -12,14 +12,14 @@ export default class ProgressBar extends React.Component {
       health: 100
     };
     setOnHealthUpdate(health => {
-      console.log(`got health!! ${health}`);
+      // console.log(`got health!! ${health}`);
       this.setState({
         health: parseInt(health)
       });
     });
   }
   render() {
-    // console.log(this.state.health/100)
+    // // console.log(this.state.health/100)
     return (
       <div className="progressbar">
         <Progress
