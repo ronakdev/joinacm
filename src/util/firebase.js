@@ -9,7 +9,7 @@ let db = firebase.database();
 
 export let session = Math.random();
 
-export let cointAmount = 50;
+export let cointAmount = 5000;
 
 export function coins() {
   return cointAmount;

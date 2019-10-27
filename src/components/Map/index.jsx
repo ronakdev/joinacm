@@ -14,7 +14,7 @@ import { message } from "antd";
 
 class ColoredRect extends React.Component {
   state = {
-    color: "white",
+
     width: 550,
     height: 550
   };
@@ -24,8 +24,8 @@ class ColoredRect extends React.Component {
       <Rect
         width={this.state.width}
         height={this.state.height}
-        opacity="0.5"
-        fill={this.state.color}
+        opacity="0"
+        fill="#fff"
         shadowBlur={5}
         onClick={e => {
           this.props.handleClick(e, this.state.width, this.state.height);
