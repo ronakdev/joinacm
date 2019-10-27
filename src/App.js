@@ -2,8 +2,8 @@ import React from 'react';
 import firebase from "./util/firebase"
 
 import Map from "./components/Map/index.jsx"
-import Particles from "./components/Particles/index.jsx"
 import Sidebar from "./components/Sidebar/index.jsx"
+import RightLayout from "./components/RightLayout/index.jsx"
 
 import './App.less';
 
@@ -23,12 +23,8 @@ class App extends React.Component{
     return (
       <div className="App">        
         <Sidebar />
-        {/* <Particles className="particles" /> */}
-
-        <Map parent={this}/>
-        <p>
-          Last click was on {this.state.x} and {this.state.y}
-        </p>
+        <RightLayout className="RightLayout" parent={this} x={this.state.x} y={this.state.y} />
+        {/* <Map parent={this}/> */}
       </div>
     );
   }
