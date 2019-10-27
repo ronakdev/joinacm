@@ -78,16 +78,17 @@ export function sendSpawn(x, y, width, height) {
 export function setOnZombieUpdate(callback) {
   db.ref("/killed").on("value", snapshot => {
     let data = snapshot.val();
+    if (!data) { return }
     // check if data isn't temp
     callback(data);
   });
 }
 
-export function setOnZombieAdd(callback) {
+export function setOnZombieAdd(callback, getAll) {
     db.ref("spawn").on("value", (snapshot) => {
         let data = snapshot.val()
         if (!data) { return }
-        if (data.session === session) { return } // we already have this zombie
+        if (data.session === session && !getAll) { return } // we already have this zombie
 
         callback(data)
     })
@@ -109,7 +110,7 @@ export function setOnHealthUpdate(callback) {
   db.ref("/health").on("value", snapshot => {
     let data = snapshot.val();
     // check if data isn't temp
-    console.log(data);
+    // console.log(data);
     callback(data);
   });
 }
