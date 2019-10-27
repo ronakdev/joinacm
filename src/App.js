@@ -1,8 +1,11 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-import Map from "./components/Map"
 import firebase from "./util/firebase"
+
+import Map from "./components/Map/index.jsx"
+import Particles from "./components/Particles/index.jsx"
+import Sidebar from "./components/Sidebar/index.jsx"
+
+import './App.less';
 
 class App extends React.Component{
   constructor(props) {
@@ -18,7 +21,10 @@ class App extends React.Component{
     })
     
     return (
-      <div className="App">
+      <div className="App">        
+        <Sidebar />
+        {/* <Particles className="particles" /> */}
+
         <Map parent={this}/>
         <p>
           Last click was on {this.state.x} and {this.state.y}
