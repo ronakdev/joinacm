@@ -84,6 +84,7 @@ export function setOnZombieUpdate(callback) {
 }
 
 export function setOnZombieAdd(callback) {
+<<<<<<< HEAD
   db.ref("spawn").on("value", snapshot => {
     let data = snapshot.val();
     if (data.session === session) {
@@ -92,6 +93,15 @@ export function setOnZombieAdd(callback) {
 
     callback(data);
   });
+=======
+    db.ref("spawn").on("value", (snapshot) => {
+        let data = snapshot.val()
+        if (!data) { return }
+        if (data.session === session) { return } // we already have this zombie
+
+        callback(data)
+    })
+>>>>>>> d06f70069eb0f8b2f09b00bd9db3aac9c6ab8552
 }
 /**
  * Tells the Unity Game to Reset (removes all objects)
