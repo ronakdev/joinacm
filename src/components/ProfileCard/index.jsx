@@ -29,8 +29,9 @@ class ProfileCard extends Component {
   render() {
     return (
       <div className="profilecard">
-        <Icon type="shop" style={{ fontSize: '32px', marginTop: "5px"}} />
-        <h1>{this.state.c} coins | {Math.floor(this.state.t)} secs</h1>
+        <h1>⠀</h1>
+        <Icon type="shop" className="shop" style={{color: "black"}} />
+        <h1> ⠀{this.state.c} coins | {Math.floor(this.state.t)} secs</h1>
       </div>
     );
   }
