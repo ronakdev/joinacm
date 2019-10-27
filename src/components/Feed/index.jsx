@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import { Table } from "antd";
-import { setOnZombieAdd, setOnZombieUpdate } from "../../util/firebase";
+import { setOnZombieAdd, setOnZombieUpdate, setOnReset } from "../../util/firebase";
 import "./style.less";
 
 export default class Feed extends Component {
@@ -51,6 +51,12 @@ export default class Feed extends Component {
         dataSource: array
       });
     });
+
+    setOnReset(() => {
+      this.setState({
+        dataSource: []
+      })
+    })
 
     this.state = {
       columns: columns,
