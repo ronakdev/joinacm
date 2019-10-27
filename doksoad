@@ -1,0 +1,41 @@
+[1mdiff --git a/src/components/Map/index.jsx b/src/components/Map/index.jsx[m
+[1mindex 76e3c3c..de1a779 100644[m
+[1m--- a/src/components/Map/index.jsx[m
+[1m+++ b/src/components/Map/index.jsx[m
+[36m@@ -1,5 +1,5 @@[m
+ import React, { Component } from "react";[m
+[31m-import { Stage, Layer, Rect, Text } from "react-konva";[m
+[32m+[m[32mimport { Stage, Layer, Rect } from "react-konva";[m
+ import Konva from "konva";[m
+ import BackgroundParticles from "../Particles";[m
+ [m
+[1mdiff --git a/src/components/RightLayout/style.less b/src/components/RightLayout/style.less[m
+[1mindex 58a872b..55e6138 100644[m
+[1m--- a/src/components/RightLayout/style.less[m
+[1m+++ b/src/components/RightLayout/style.less[m
+[36m@@ -1,5 +1,7 @@[m
+ .outerlayout {[m
+     width: 65vw;[m
+[32m+[m[32m    background: rgb(2,0,36);[m
+[32m+[m[32m    background: linear-gradient(-150deg, rgba(2,0,36,1) 41%, rgba(12,12,54,1) 91%, rgba(63,17,87,1) 100%);[m
+ }[m
+ [m
+ .layout {[m
+[36m@@ -9,9 +11,16 @@[m
+ [m
+ .ant-progress-line {[m
+     width: 50%;[m
+[32m+[m[32m    margin-left: 25%;[m
+[32m+[m[32m    margin-bottom: 5%[m
+ }[m
+ [m
+ .bar {[m
+     display: flex;[m
+     justify-content: center;[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m[32m.map {[m
+[32m+[m[32m    display: flex;[m
+[32m+[m[32m    justify-content: center;[m
+ }[m
+\ No newline at end of file[m
