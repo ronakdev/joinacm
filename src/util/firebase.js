@@ -9,7 +9,7 @@ let db = firebase.database();
 
 export let session = Math.random();
 
-export let cointAmount = 100;
+export let cointAmount = 50;
 
 export function coins() {
   return cointAmount;
@@ -99,6 +99,8 @@ export function setOnZombieAdd(callback, getAll) {
 export function reset() {
   db.ref("/reset").set(Math.random());
   db.ref('/spawn').set({})
+  cointAmount = 50;
+  time = 0;
   // updates it with any value to trigger an event on the Unity end
 }
 
