@@ -55,6 +55,7 @@ export default class Map extends Component {
 
     setOnZombieAdd((spawnData) => {
       let index = this.state.zombies.map(function(e) { return e.id; }).indexOf(spawnData.id);
+      console.log(index)
       if (index !== -1) { return } // already here
       let array = this.state.zombies
     let mX = this.state.width / 40

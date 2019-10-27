@@ -7,6 +7,8 @@ firebase.analytics()
 
 let db = firebase.database()
 
+export let session = Math.random()
+
 export let cointAmount = 50;
 
 export function coins() {
@@ -62,7 +64,8 @@ export function sendSpawn(x, y, width, height) {
     db.ref("/spawn").set({
         id: id,
         x: moddedX,
-        y: moddedY
+        y: moddedY,
+        session: session
     })
     return id
 }
@@ -82,6 +85,7 @@ export function setOnZombieUpdate(callback) {
 export function setOnZombieAdd(callback) {
     db.ref("spawn").on("value", (snapshot) => {
         let data = snapshot.val()
+        if (data.session === session) { return } // we already have this zombie
 
         callback(data)
     })
