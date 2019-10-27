@@ -1,70 +1,71 @@
-import firebase from "firebase"
-import config from "./config"
+import firebase from "firebase";
+import config from "./config";
 import { message } from "antd";
 
-firebase.initializeApp(config)
-firebase.analytics()
+firebase.initializeApp(config);
+firebase.analytics();
 
-let db = firebase.database()
+let db = firebase.database();
 
 export let cointAmount = 50;
 
 export function coins() {
-    return cointAmount
+  return cointAmount;
 }
 
-let time = 0
-let setCoin = false
+let time = 0;
+let setCoin = false;
 
 export function spendCoins(amount) {
-    cointAmount -= amount
+  cointAmount -= amount;
 }
 export function timeNow() {
-    return time
+  return time;
 }
 export function getCoinUpdates(callback) {
-    if (setCoin) {
-        setInterval(()=> {callback(cointAmount)}, 300)
-    } else {
-        setInterval(() => {
-            callback(cointAmount)
-            cointAmount++
-            // also for some reason, will check if a minute ends
-            time += 0.3
-            if (time >= 60) {
-                message.info("GAME OVER!!")
-                time = 0
-            }
-    
-        }, 300)
-        setCoin = true
-    }
+  if (setCoin) {
+    setInterval(() => {
+      callback(cointAmount);
+    }, 300);
+  } else {
+    setInterval(() => {
+      callback(cointAmount);
+      cointAmount++;
+      // also for some reason, will check if a minute ends
+      time += 0.3;
+      if (time >= 60) {
+        message.info("GAME OVER!!");
+        time = 0;
+      }
+    }, 300);
+    setCoin = true;
+  }
 }
 
 export function getTimeUpdates(callback) {
-    setInterval(() => {
-        callback(time)
-    }, 600)
+  setInterval(() => {
+    callback(time);
+  }, 600);
 }
 /**
  * Sends a spawn request to firebase. Creates a unique ID
- * @param {number} x 
- * @param {number} y 
+ * @param {number} x
+ * @param {number} y
  * @returns {string} of the new unique id
  */
 export function sendSpawn(x, y, width, height) {
-    let mX = width / 40
-    let mY = height / 40
+  let mX = width / 40;
+  let mY = height / 40;
 
-    let moddedX = Math.floor(x / mX) - 20;
-    let moddedY = Math.floor(y / mY) - 20;
-    let id = randomName()
-    db.ref("/spawn").set({
-        id: id,
-        x: moddedX,
-        y: moddedY
-    })
-    return id
+  let moddedX = Math.floor(x / mX) - 20;
+  let moddedY = Math.floor(y / mY) - 20;
+  let id = randomName();
+  db.ref("/spawn").set({
+    id: id,
+    x: moddedX,
+    y: moddedY
+  });
+  return id;
 }
 
 /**
@@ -72,26 +73,26 @@ export function sendSpawn(x, y, width, height) {
  * @param {function: (id: string) => {}} callback - called when a new zombie is killed
  */
 export function setOnZombieUpdate(callback) {
-    db.ref("/killed").on("value", (snapshot) => {
-        let data = snapshot.val()
-        // check if data isn't temp
-        callback(data)
-    })
+  db.ref("/killed").on("value", snapshot => {
+    let data = snapshot.val();
+    // check if data isn't temp
+    callback(data);
+  });
 }
 
 export function setOnZombieAdd(callback) {
-    db.ref("spawn").on("value", (snapshot) => {
-        let data = snapshot.val()
+  db.ref("spawn").on("value", snapshot => {
+    let data = snapshot.val();
 
-        callback(data)
-    })
+    callback(data);
+  });
 }
 /**
  * Tells the Unity Game to Reset (removes all objects)
  */
 export function reset() {
-    db.ref("/reset").set(Math.random()) 
-    // updates it with any value to trigger an event on the Unity end
+  db.ref("/reset").set(Math.random());
+  // updates it with any value to trigger an event on the Unity end
 }
 
 /**
@@ -99,27 +100,30 @@ export function reset() {
  * @param {function: (health: number) => {}} callback - called when health is updated
  */
 export function setOnHealthUpdate(callback) {
-    db.ref("/health").on("value", (snapshot) => {
-        let data = snapshot.val()
-        // check if data isn't temp
-        console.log(data)
-        callback(data)
-    })
+  db.ref("/health").on("value", snapshot => {
+    let data = snapshot.val();
+    // check if data isn't temp
+    console.log(data);
+    callback(data);
+  });
 }
 
 export function uuidv4() {
-    return ([1e7]+-1e3+-4e3+-8e3+-1e11).replace(/[018]/g, c =>
-      (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4).toString(16)
-    );
+  return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11).replace(/[018]/g, c =>
+    (
+      c ^
+      (crypto.getRandomValues(new Uint8Array(1))[0] & (15 >> (c / 4)))
+    ).toString(16)
+  );
 }
 
-export default firebase
+export default firebase;
 
-let adjectives = ["Snarky", "Sneaky", "Swanky", "Funny", "Weird"]
-let names = ["Steve", "Johnny", "Riley", "Wiley"]
+let adjectives = ["Snarky", "Sneaky", "Swanky", "Funny", "Weird"];
+let names = ["Steve", "Johnny", "Riley", "Wiley"];
 function randomName() {
-    let aI = Math.floor( Math.random() * adjectives.length)
-    let nI = Math.floor( Math.random() * names.length)
+  let aI = Math.floor(Math.random() * adjectives.length);
+  let nI = Math.floor(Math.random() * names.length);
 
-    return adjectives[aI] + " " + names[nI] + `-${Math.random()}`
+  return adjectives[aI] + " " + names[nI] + `-${Math.random()}`;
 }

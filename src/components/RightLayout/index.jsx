@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
 import ProfileCard from "../ProfileCard/index.jsx";
-import ProgressBar from "../Progress/index.jsx"
-import Map from "../Map/index.jsx"
+import ProgressBar from "../Progress/index.jsx";
+import Map from "../Map/index.jsx";
 
 import "./style.less";
 
