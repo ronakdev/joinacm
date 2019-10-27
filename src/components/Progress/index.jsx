@@ -3,6 +3,8 @@ import React from 'react';
 import { Progress } from "antd";
 import {setOnHealthUpdate} from "../../util/firebase"
 
+import "./style.less"
+
 export default class ProgressBar extends React.Component {
   constructor(props) {
     super(props)
