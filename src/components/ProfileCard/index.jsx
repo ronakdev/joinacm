@@ -3,13 +3,34 @@ import React, { Component } from "react";
 import { Icon } from "antd";
 
 import "./style.less";
+import {timeNow, coins, getCoinUpdates, getTimeUpdates} from "../../util/firebase"
 
 class ProfileCard extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      c: coins(),
+      t: timeNow()
+    }
+    getCoinUpdates((coinAmount) => {
+      this.setState({
+        c: coinAmount
+      })
+    })
+
+    getTimeUpdates((time) => {
+      this.setState({
+        t: time
+      })
+    })
+  }
+  
+
   render() {
     return (
       <div className="profilecard">
-        <Icon type="github" style={{ fontSize: '32px', marginTop: "5px"}} />
-        <h1>⠀VIGHT</h1>
+        <Icon type="shop" style={{ fontSize: '32px', marginTop: "5px"}} />
+        <h1>{this.state.c} coins | {Math.floor(this.state.t)} secs</h1>
       </div>
     );
   }

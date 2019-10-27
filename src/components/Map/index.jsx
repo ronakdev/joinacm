@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Stage, Layer, Rect, Circle } from "react-konva";
 import Konva from "konva";
 import BackgroundParticles from "../Particles";
-import {sendSpawn} from "../../util/firebase";
+import {sendSpawn, coins, spendCoins, setOnZombieUpdate} from "../../util/firebase";
 import "./style.less";
 import {message} from "antd"
 
@@ -38,6 +38,16 @@ export default class Map extends Component {
       zombies: []
     }
     this.handleClick = this.handleClick.bind(this)
+
+    setOnZombieUpdate((id) => {
+      console.log(`zombie: ${id} was killed!`)
+      let index = this.state.zombies.indexOf(id)
+      console.log(`found at index: ${index}`)
+      if (index === -1) { return }
+      this.setState({
+        state: this.state.zombies.slice(index, 1)
+      })
+    })
   }
 
   handleClick(e, width, height) {
@@ -49,6 +59,14 @@ export default class Map extends Component {
       // player area, out of bounds
       message.error("You can't spawn right next to the player!")
       return;
+    }
+
+    // check if we have enough funds
+    if (coins() < 50) {
+      message.error("You need 50 coins to send a zombie!!")
+      return
+    } else {
+      spendCoins(50)
     }
     let id = sendSpawn(x, y, width, height) ;
     simulate(document.getElementsByClassName("particles")[0], {

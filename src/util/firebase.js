@@ -1,11 +1,51 @@
 import firebase from "firebase"
 import config from "./config"
+import { message } from "antd";
 
 firebase.initializeApp(config)
 firebase.analytics()
 
 let db = firebase.database()
 
+export let cointAmount = 10;
+
+export function coins() {
+    return cointAmount
+}
+
+let time = 0
+let setCoin = false
+
+export function spendCoins(amount) {
+    cointAmount -= amount
+}
+export function timeNow() {
+    return time
+}
+export function getCoinUpdates(callback) {
+    if (setCoin) {
+        setInterval(()=> {callback(cointAmount)}, 300)
+    } else {
+        setInterval(() => {
+            callback(cointAmount)
+            cointAmount++
+            // also for some reason, will check if a minute ends
+            time += 0.3
+            if (time >= 60) {
+                message.info("GAME OVER!!")
+                time = 0
+            }
+    
+        }, 300)
+        setCoin = true
+    }
+}
+
+export function getTimeUpdates(callback) {
+    setInterval(() => {
+        callback(time)
+    }, 600)
+}
 /**
  * Sends a spawn request to firebase. Creates a unique ID
  * @param {number} x 
