@@ -48,7 +48,7 @@ export default class Map extends Component {
     // And then we have canvas shapes inside the Layer
     console.log(this.state.zombies)
     return (
-      <div style={{ position: "relative", }} onClick={(e) => {
+      <div className="map" style={{ position: "relative", }} onClick={(e) => {
         let x = e.clientX - 510
         let y = e.clientY - 30
         
