@@ -150,7 +150,6 @@ export default class Map extends Component {
               handleClick={this.handleClick}
             />
             {this.state.zombies.map((zData, index) => {
-              // // console.log(zData)
               return (
                 <Zombie key={index} id={zData.id} x={zData.x} y={zData.y} />
               );

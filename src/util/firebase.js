@@ -49,6 +49,7 @@ export function getTimeUpdates(callback) {
     callback(time);
   }, 600);
 }
+
 /**
  * Sends a spawn request to firebase. Creates a unique ID
  * @param {number} x
@@ -111,13 +112,13 @@ export function reset() {
   // updates it with any value to trigger an event on the Unity end
 }
 
-
 export function setOnReset(callback) {
   funcs.push(callback)
   db.ref("/reset").on("value", snapshot => {
     callback()
   })
 }
+
 /**
  * Sets a specified callback function to be called as health is updated
  * @param {function: (health: number) => {}} callback - called when health is updated
